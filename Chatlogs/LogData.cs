@@ -14,14 +14,21 @@ namespace Chatlogs {
                 Environment.SpecialFolder.ApplicationData);
             string logs = appData + @"\.minecraft\logs";
 
+            Console.WriteLine("Do you wish to use the default " +
+                "Minecraft location for logs (Y/N)? ");
+            if (Console.ReadKey(true).Key == ConsoleKey.N) {
+                Console.Write("Enter the location for logs: ");
+                logs = Console.ReadLine();
+            }
+
             return logs;
         }
 
-        public void DecompressLogs() {
+        public void DecompressLogs(string logDir) {
             if (!Directory.Exists(LocalDir))
                 Directory.CreateDirectory(LocalDir);
 
-            foreach (string file in Directory.EnumerateFiles(GetLogDir(), "*.gz")) {
+            foreach (string file in Directory.EnumerateFiles(logDir, "*.gz")) {
                 FileInfo fi = new FileInfo(file);
 
                 Decompress(fi, LocalDir + @"\" + fi.Name.Remove(fi.Name.Length - 2));
