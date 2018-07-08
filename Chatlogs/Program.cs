@@ -69,7 +69,7 @@ namespace Chatlogs {
 
             if (save) ld.Save(found);
 
-            Directory.Delete(localDir);
+            Directory.Delete(localDir, true);
         }
     }
 }
