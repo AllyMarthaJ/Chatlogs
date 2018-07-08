@@ -11,13 +11,16 @@ using static Chatlogs.ConsoleHelper;
 namespace Chatlogs {
     class Program {
         private const string localDir = "chatlogs_ex";
-
+        private static string logDir;
         static void Main(string[] args) {
 
             // Print initialisation screen.
 
             Console.WriteLine(Properties.Resources.Chatlogs);
-            Console.WriteLine("Copying logs from: " + LogData.GetLogDir());
+
+            logDir = LogData.GetLogDir();
+
+            Console.WriteLine("Copying logs from: " + logDir);
             Console.Write("Search >> ");
 
             // Get search value.
@@ -31,7 +34,7 @@ namespace Chatlogs {
             };
 
             Update("Copying logs to " + localDir, ConsoleColor.Yellow);
-            ld.DecompressLogs();
+            ld.DecompressLogs(logDir);
 
             // Read the logs.
 
