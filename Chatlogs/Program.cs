@@ -67,9 +67,9 @@ namespace Chatlogs {
             Console.Write("Do you want to save the search results (Y/N)? ");
             bool save = Console.ReadKey().Key == ConsoleKey.Y;
 
-            if (save) {
-                ld.Save(found);
-            }
+            if (save) ld.Save(found);
+
+            Directory.Delete(localDir);
         }
     }
 }
