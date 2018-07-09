@@ -33,6 +33,12 @@ namespace Chatlogs {
 
                 Decompress(fi, LocalDir + @"\" + fi.Name.Remove(fi.Name.Length - 2));
             }
+
+            foreach (string file in Directory.EnumerateFiles(logDir, "*.log")) {
+                FileInfo fi = new FileInfo(file);
+
+                File.Copy(file, LocalDir + @"\" + fi.Name, true);
+            }
         }
 
         public void Decompress(FileInfo fileToDecompress, string fileName) {
